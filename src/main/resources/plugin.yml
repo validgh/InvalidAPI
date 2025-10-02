@@ -1,0 +1,4 @@
+name: InvalidAPI
+version: '1.0'
+main: me.valid.invalidapi.InvalidAPI
+api-version: '1.20'
