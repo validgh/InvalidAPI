@@ -3,6 +3,7 @@ package me.valid.invalidapi.utils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -51,6 +52,16 @@ public class MessageUtils {
     public static void sendToConsole(Plugin plugin, Level level, String[] messages) {
         for (String message : messages) {
             sendToConsole(plugin, level, message);
+        }
+    }
+
+    /**
+     * Sends a message to all online players
+     * @param message The message to send to all players
+     */
+    public static void sendToAllPlayers(String message) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            sendToPlayer(player, message);
         }
     }
 }
