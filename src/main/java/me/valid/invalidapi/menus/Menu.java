@@ -73,9 +73,8 @@ public abstract class Menu implements InventoryHolder {
         }
     }
 
-    public void setFillerItem(Material material) {
-        fillerItem = makeItem(material, " ");
-        setFillerItem();
+    public void setFillerItem(Material material, String displayName) {
+        fillerItem = makeItem(material, displayName);
     }
 
     /**
