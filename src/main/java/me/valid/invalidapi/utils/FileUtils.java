@@ -3,12 +3,14 @@ package me.valid.invalidapi.utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.logging.Level;
 
 public class FileUtils {
@@ -27,19 +29,19 @@ public class FileUtils {
         }
 
         if (!file.exists()) {
-            try (InputStream in = plugin.getResource(fileName)) {
-                if (in != null) {
-                    plugin.saveResource(fileName, false);
-                } else {
-                    file.createNewFile();
-                }
-            } catch (IOException e) {
-                MessageUtils.sendToConsole(plugin, Level.SEVERE, "Could not create file: " + fileName);
-                throw new RuntimeException(e);
-            }
+            plugin.saveResource(fileName, false);
         }
 
-        return YamlConfiguration.loadConfiguration(file);
+        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+
+        try (InputStreamReader reader = new InputStreamReader(Objects.requireNonNull(plugin.getResource(fileName)), StandardCharsets.UTF_8)) {
+            YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(reader);
+            config.setDefaults(defConfig);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return config;
     }
 
     /**
@@ -52,15 +54,10 @@ public class FileUtils {
         File file = getFile(plugin, fileName);
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
 
-        try (InputStream in = plugin.getResource(fileName)) {
-            if (in != null) {
-                YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(
-                        new InputStreamReader(in, StandardCharsets.UTF_8)
-                );
-                config.setDefaults(defConfig);
-            }
+        try (InputStreamReader reader = new InputStreamReader(Objects.requireNonNull(plugin.getResource(fileName)), StandardCharsets.UTF_8)) {
+            YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(reader);
+            config.setDefaults(defConfig);
         } catch (IOException e) {
-            MessageUtils.sendToConsole(plugin, Level.SEVERE, "Error loading default config for: " + fileName);
             throw new RuntimeException(e);
         }
 
@@ -74,9 +71,8 @@ public class FileUtils {
      * @param fileName The file name
      */
     public static void saveFile(Plugin plugin, FileConfiguration config, String fileName) {
-        File file = getFile(plugin, fileName);
         try {
-            config.save(file);
+            config.save(getFile(plugin, fileName));
         } catch (IOException e) {
             MessageUtils.sendToConsole(plugin, Level.SEVERE, "Could not save file: " + fileName);
             throw new RuntimeException(e);
