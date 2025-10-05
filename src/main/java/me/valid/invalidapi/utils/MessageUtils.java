@@ -21,7 +21,7 @@ public class MessageUtils {
      * @return The Component of the translated message, formatting the colors
      */
     public static Component translateColors(String message) {
-        return MINI_MESSAGE.deserialize(message).decoration(TextDecoration.ITALIC, false);
+        return MINI_MESSAGE.deserialize(message).decorationIfAbsent(TextDecoration.ITALIC, TextDecoration.State.FALSE);
     }
 
     /**
