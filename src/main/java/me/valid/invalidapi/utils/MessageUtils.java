@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 
 public class MessageUtils {
 
-    private final static Logger logger = Logger.getLogger("Minecraft");
     private final static MiniMessage MINI_MESSAGE = MiniMessage.builder().build();
 
     /**
