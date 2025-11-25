@@ -9,6 +9,9 @@ public enum MessageType {
     ),
     COMMAND_INVALID_ARGUMENTS(
             "<red>Invalid command arguments."
+    ),
+    COMMAND_INVALID_SENDER(
+            "<red>This command cannot be ran here. Please run it in game."
     );
 
     private final String message;
