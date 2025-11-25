@@ -1,5 +1,6 @@
 package me.valid.invalidapi.utils;
 
+import me.valid.invalidapi.enums.MessageType;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -44,6 +45,16 @@ public class MessageUtils {
         for (String message : messages) {
             sendToPlayer(player, message);
         }
+    }
+
+    /**
+     * Send a default message to a player using MessageType enums
+     *
+     * @param player      The player to send the message to
+     * @param messageType The MessageType to send to the player
+     */
+    public static void sendToPlayer(Player player, MessageType messageType) {
+        sendToPlayer(player, messageType.getMessage());
     }
 
     /**
