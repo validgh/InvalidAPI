@@ -10,6 +10,7 @@ public class CommandUtils {
 
     /**
      * Checks to see if the CommandSender is an instance of the Player object
+     *
      * @param plugin The plugin to log the error message with
      * @param sender The command sender
      * @return True if the CommandSender is an instance of the Player object, false otherwise
@@ -24,7 +25,8 @@ public class CommandUtils {
 
     /**
      * Checks to see if a Player has a permission
-     * @param player The Player to check for the permission
+     *
+     * @param player     The Player to check for the permission
      * @param permission The permission
      * @return True if the player has the permission, false otherwise
      */

@@ -30,9 +30,13 @@ public abstract class Menu implements InventoryHolder {
     }
 
     public abstract Component getMenuName();
+
     public abstract int getSlots();
+
     public abstract boolean cancelAllClicks();
+
     public abstract void handleMenu(InventoryClickEvent event) throws MenuManagerException, MenuManagerNotSetupException;
+
     public abstract void setMenuItems();
 
     public void open() {
@@ -78,9 +82,9 @@ public abstract class Menu implements InventoryHolder {
     }
 
     /**
-     * @param material The material to base the ItemStack on
+     * @param material    The material to base the ItemStack on
      * @param displayName The display name of the ItemStack
-     * @param lore The lore of the ItemStack, with the Strings automatically being colored with ColorTranslator
+     * @param lore        The lore of the ItemStack, with the Strings automatically being colored with ColorTranslator
      * @return The constructed ItemStack object
      */
     public ItemStack makeItem(Material material, String displayName, String... lore) {
@@ -98,5 +102,6 @@ public abstract class Menu implements InventoryHolder {
      * Called when a player closes this menu.
      * Override this method to handle menu closing events.
      */
-    public void handleMenuClose() { }
+    public void handleMenuClose() {
+    }
 }

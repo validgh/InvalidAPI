@@ -15,7 +15,8 @@ public class FileUtils {
 
     /**
      * Loads or creates a configuration file
-     * @param plugin The plugin instance
+     *
+     * @param plugin   The plugin instance
      * @param fileName The file name
      * @return The loaded FileConfiguration
      */
@@ -44,7 +45,8 @@ public class FileUtils {
 
     /**
      * Reloads a configuration file
-     * @param plugin The plugin instance
+     *
+     * @param plugin   The plugin instance
      * @param fileName The file name
      * @return The reloaded FileConfiguration
      */
@@ -64,8 +66,9 @@ public class FileUtils {
 
     /**
      * Saves a configuration file safely to disk
-     * @param plugin The plugin instance
-     * @param config The configuration file to save
+     *
+     * @param plugin   The plugin instance
+     * @param config   The configuration file to save
      * @param fileName The file name
      */
     public static void saveFile(Plugin plugin, FileConfiguration config, String fileName) {
@@ -79,7 +82,8 @@ public class FileUtils {
 
     /**
      * Gets a file reference in the plugins folder
-     * @param plugin The plugin instance
+     *
+     * @param plugin   The plugin instance
      * @param fileName The file name
      * @return The File
      */
@@ -89,7 +93,8 @@ public class FileUtils {
 
     /**
      * Checks if a file exists inside the plugins folder
-     * @param plugin The plugin instance
+     *
+     * @param plugin   The plugin instance
      * @param fileName The file name
      * @return True if the file exists, false otherwise
      */

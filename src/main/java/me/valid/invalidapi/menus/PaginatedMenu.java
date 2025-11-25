@@ -23,6 +23,7 @@ public abstract class PaginatedMenu extends Menu {
     }
 
     public abstract List<ItemStack> dataToItems();
+
     @Nullable
     public abstract HashMap<Integer, ItemStack> getCustomMenuBorderItems();
 

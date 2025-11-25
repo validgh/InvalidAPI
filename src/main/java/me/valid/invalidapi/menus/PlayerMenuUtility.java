@@ -24,7 +24,7 @@ public class PlayerMenuUtility {
 
     /**
      * @param identifier A key to store the data by
-     * @param data The data itself to be stored
+     * @param data       The data itself to be stored
      */
     public void setData(String identifier, Object data) {
         this.dataMap.put(identifier, data);
