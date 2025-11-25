@@ -80,6 +80,16 @@ public class MessageUtils {
     }
 
     /**
+     * Send a default message to a CommandSender using MessageType enums
+     *
+     * @param sender  The CommandSender to send the message to
+     * @param messageType The MessageType to send to the CommandSender
+     */
+    public static void sendToCommandSender(CommandSender sender, MessageType messageType) {
+        sendToCommandSender(sender, messageType.getMessage());
+    }
+
+    /**
      * Log a message in console
      *
      * @param plugin  The plugin to log a message with
