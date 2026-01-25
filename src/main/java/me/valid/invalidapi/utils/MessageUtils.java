@@ -32,6 +32,7 @@ public class MessageUtils {
      * @param message The message to send to the player, can use MiniMessage format
      */
     public static void sendToPlayer(Player player, String message) {
+        if (player == null || !player.isOnline() || message.isEmpty()) return;
         player.sendMessage(translateColors(message));
     }
 
@@ -42,6 +43,7 @@ public class MessageUtils {
      * @param messages The messages to send to the player, can use MiniMessage format
      */
     public static void sendToPlayer(Player player, String[] messages) {
+        if (player == null || !player.isOnline()) return;
         for (String message : messages) {
             sendToPlayer(player, message);
         }
@@ -54,6 +56,7 @@ public class MessageUtils {
      * @param messageType The MessageType to send to the player
      */
     public static void sendToPlayer(Player player, MessageType messageType) {
+        if (player == null || !player.isOnline()) return;
         sendToPlayer(player, messageType.getMessage());
     }
 
@@ -64,6 +67,7 @@ public class MessageUtils {
      * @param message The message to send to the CommandSender, can use MiniMessage format
      */
     public static void sendToCommandSender(CommandSender sender, String message) {
+        if (sender == null || message.isEmpty()) return;
         sender.sendMessage(translateColors(message));
     }
 
@@ -74,6 +78,7 @@ public class MessageUtils {
      * @param messages The messages to send to the CommandSender, can use MiniMessage format
      */
     public static void sendToCommandSender(CommandSender sender, String[] messages) {
+        if (sender == null) return;
         for (String message : messages) {
             sendToCommandSender(sender, message);
         }
@@ -86,6 +91,7 @@ public class MessageUtils {
      * @param messageType The MessageType to send to the CommandSender
      */
     public static void sendToCommandSender(CommandSender sender, MessageType messageType) {
+        if (sender == null) return;
         sendToCommandSender(sender, messageType.getMessage());
     }
 
@@ -97,6 +103,7 @@ public class MessageUtils {
      * @param message The message to log
      */
     public static void sendToConsole(Plugin plugin, Level level, String message) {
+        if (message.isEmpty()) return;
         plugin.getLogger().log(level, message);
     }
 
@@ -119,6 +126,7 @@ public class MessageUtils {
      * @param message The message to send to all players
      */
     public static void sendToAllPlayers(String message) {
+        if (message.isEmpty()) return;
         for (Player player : Bukkit.getOnlinePlayers()) {
             sendToPlayer(player, message);
         }
