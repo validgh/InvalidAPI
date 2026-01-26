@@ -47,7 +47,7 @@ public class MenuListener implements Listener {
         InventoryHolder holder = event.getInventory().getHolder();
 
         if (holder instanceof Menu menu) {
-            menu.handleMenuClose();
+            menu.handleMenuClose(event);
         }
     }
 }
