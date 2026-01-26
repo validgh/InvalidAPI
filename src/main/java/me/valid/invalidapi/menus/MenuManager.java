@@ -68,4 +68,12 @@ public class MenuManager {
             return playerMenuUtilityMap.get(p.getUniqueId());
         }
     }
+
+    public static PlayerMenuUtility pmu(Player player) {
+        try {
+            return getPlayerMenuUtility(player);
+        } catch (MenuManagerNotSetupException e) {
+            throw new IllegalStateException("MenuManager is not set up yet.", e);
+        }
+    }
 }
