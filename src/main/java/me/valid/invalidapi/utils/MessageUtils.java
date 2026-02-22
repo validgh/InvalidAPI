@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import java.util.List;
 import java.util.logging.Level;
 
 public class MessageUtils {
@@ -50,6 +51,17 @@ public class MessageUtils {
     }
 
     /**
+     * Send multiple default messages to a player using a List of Strings
+     *
+     * @param player       The player to send the message to
+     * @param messages     The messages to send to the player, can use MiniMessage format
+     */
+    public static void sendToPlayer(Player player, List<String> messages) {
+        if (player == null || !player.isOnline()) return;
+        messages.forEach(message -> sendToPlayer(player, message));
+    }
+
+    /**
      * Send a default message to a player using MessageType enums
      *
      * @param player      The player to send the message to
@@ -82,6 +94,17 @@ public class MessageUtils {
         for (String message : messages) {
             sendToCommandSender(sender, message);
         }
+    }
+
+    /**
+     * Send multiple default messages to a CommandSender using a List of Strings
+     *
+     * @param sender       The CommandSender to send the message to
+     * @param messages     The messages to send to the CommandSender, can use MiniMessage format
+     */
+    public static void sendToCommandSender(CommandSender sender, List<String> messages) {
+        if (sender == null) return;
+        messages.forEach(message -> sendToCommandSender(sender, message));
     }
 
     /**
@@ -121,6 +144,17 @@ public class MessageUtils {
     }
 
     /**
+    * Log multiple messages in console using a List of Strings
+    *
+    * @param plugin   The plugin to log the messages with
+    * @param level    The level of logging, ex: info, warning, severe
+    * @param messages The messages to log
+    */
+    public static void sendToConsole(Plugin plugin, Level level, List<String> messages) {
+        messages.forEach(message -> sendToConsole(plugin, level, message));
+    }
+
+    /**
      * Sends a message to all online players
      *
      * @param message The message to send to all players
@@ -129,6 +163,39 @@ public class MessageUtils {
         if (message.isEmpty()) return;
         for (Player player : Bukkit.getOnlinePlayers()) {
             sendToPlayer(player, message);
+        }
+    }
+
+    /**
+     * Sends multiple messages to all online players
+     *
+     * @param messages The messages to send to all players
+     */
+    public static void sendToAllPlayers(String[] messages) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            sendToPlayer(player, messages);
+        }
+    }
+
+    /**
+     * Sends multiple default messages to all online players using a List of Strings
+     *
+     * @param messages The messages to send to all players
+     */
+    public static void sendToAllPlayers(List<String> messages) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            sendToPlayer(player, messages);
+        }
+    }
+
+    /**
+     * Sends a default message to all online players using MessageType enums
+     *
+     * @param messageType The MessageType to send to all players
+     */
+    public static void sendToAllPlayers(MessageType messageType) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            sendToPlayer(player, messageType);
         }
     }
 }
